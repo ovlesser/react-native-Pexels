@@ -1,12 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {FETCH_SUCCEED, FETCH_FAILED} from '../redux/Action';
 import {StyleSheet, StatusBar, SafeAreaView, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import List from './List';
 import Search from './Search';
 
 const Home = ({navigation}) => {
-  const [data, setData] = useState<Data>();
-  const [error, setError] = useState<Error>();
+  const data: Data = useSelector(state => state.fetch.data);
+  const error: Error = useSelector(state => state.fetch.error);
+  const dispatch = useDispatch();
   const [keyword, setKeyword] = useState<string>();
   const requests = new Set();
   const fetchData = async (
@@ -27,11 +30,9 @@ const Home = ({navigation}) => {
         },
       });
       const json = await response.json();
-      const photos =
-        data && data.photos ? data?.photos.concat(json.photos) : json.photos;
-      setData({...json, photos});
+      dispatch({type: FETCH_SUCCEED, payload: json});
     } catch (error) {
-      setError(error);
+      dispatch({type: FETCH_FAILED, payload: error});
     } finally {
       requests.delete(url);
     }
@@ -57,7 +58,7 @@ const Home = ({navigation}) => {
 
   const onSearch = (query: string) => {
     setKeyword(query);
-    setData(undefined);
+    dispatch({type: FETCH_SUCCEED, payload: undefined});
   };
 
   useEffect(() => {
