@@ -1,44 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {FETCH_SUCCEED, FETCH_FAILED} from '../redux/Action';
 import {StyleSheet, StatusBar, SafeAreaView, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import List from './List';
+import Repository from '../repository/Repository';
 import Search from './Search';
 
 const Home = ({navigation}) => {
   const data: Data = useSelector(state => state.fetch.data);
   const error: Error = useSelector(state => state.fetch.error);
-  const dispatch = useDispatch();
-  const [keyword, setKeyword] = useState<string>();
-  const requests = new Set();
-  const fetchData = async (
-    query: string = '',
-    pageIndex: number = 0,
-    perPage: number = 20,
-  ) => {
-    const url = `https://api.pexels.com/v1/search?query=${query}&page=${pageIndex}&per_page=${perPage}`;
-    try {
-      if (requests.has(url)) {
-        return;
-      }
-      requests.add(url);
-      console.log(`fetch from: ${url}`);      const response = await fetch(url, {
-        headers: {
-          Authorization:
-            '563492ad6f91700001000001414a159eaed14a5594dff71a233e1bd7',
-        },
-      });
-      const json = await response.json();
-      dispatch({type: FETCH_SUCCEED, payload: json});
-    } catch (error) {
-      dispatch({type: FETCH_FAILED, payload: error});
-    } finally {
-      requests.delete(url);
-    }
-  };
 
-  const nextPage = () => {
+  const nextPage = async () => {
     const key = 'page';
     if (data?.next_page) {
       const page = decodeURIComponent(
@@ -52,20 +24,25 @@ const Home = ({navigation}) => {
           '$1',
         ),
       );
-      fetchData(keyword, parseInt(page, 10) || 0, 20);
+      await Repository.refresh(data.photos[0].keyword, parseInt(page, 10) || 0);
+      // TODO: to find a better way to get refreshed data fro database
+      Repository.get();
     }
   };
 
-  const onSearch = (query: string) => {
-    setKeyword(query);
-    dispatch({type: FETCH_SUCCEED, payload: undefined});
+  const onSearch = async (query: string) => {
+    await Repository.clear();
+    await Repository.refresh(query, 0);
+    await Repository.get();
   };
 
   useEffect(() => {
-    if (keyword) {
-      (async () => await fetchData(keyword, 0, 20))();
+    if (!data && !error) {
+      (async () => {
+        await Repository.get();
+      })();
     }
-  }, [keyword]);
+  });
 
   const list =
     data && !!data.photos && data.photos.length > 0 ? (
