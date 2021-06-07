@@ -6,7 +6,7 @@ const Search = ({
   onSearch: (query: string) => void;
 }): JSX.Element => {
   return (
-    <SearchBar placeholder={'Type Here...'} onSearchButtonPress={onSearch} />
+    <SearchBar textColor={'black'} placeholder={'Type Here...'} onSearchButtonPress={onSearch} />
   );
 };
 export default Search;
