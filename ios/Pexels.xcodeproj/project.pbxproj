@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* PexelsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PexelsTests.m */; };
+		0EBA8E3E266DA08000E624EB /* wmelon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBA8E3D266DA08000E624EB /* wmelon.swift */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -31,6 +32,8 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* PexelsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PexelsTests.m; sourceTree = "<group>"; };
 		0C0593B333E50E3C3A93DB77 /* Pods-Pexels-PexelsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pexels-PexelsTests.debug.xcconfig"; path = "Target Support Files/Pods-Pexels-PexelsTests/Pods-Pexels-PexelsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0EBA8E3C266DA08000E624EB /* Pexels-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pexels-Bridging-Header.h"; sourceTree = "<group>"; };
+		0EBA8E3D266DA08000E624EB /* wmelon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wmelon.swift; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Pexels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pexels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Pexels/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Pexels/AppDelegate.m; sourceTree = "<group>"; };
@@ -116,12 +119,14 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				0EBA8E3D266DA08000E624EB /* wmelon.swift */,
 				13B07FAE1A68108700A75B9A /* Pexels */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* PexelsTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				95244DA42D14AC24AB9BF408 /* Pods */,
+				0EBA8E3C266DA08000E624EB /* Pexels-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -413,6 +418,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				0EBA8E3E266DA08000E624EB /* wmelon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +504,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Pexels;
+				SWIFT_OBJC_BRIDGING_HEADER = "Pexels-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -523,6 +530,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Pexels;
+				SWIFT_OBJC_BRIDGING_HEADER = "Pexels-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
