@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {StyleSheet, StatusBar, SafeAreaView, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import List from './List';
+// import List from './List';
+import {default as List} from './StaggeredGridImageLayout';
 import Repository from '../repository/Repository';
 import Search from './Search';
 
